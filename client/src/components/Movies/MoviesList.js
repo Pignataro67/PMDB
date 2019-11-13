@@ -1,22 +1,12 @@
-import React, { Component } from 'react';
-import Goal from './Movie';
+import React from 'react';
+import Movie from './Movie';
 
+const MoviesList = ({ movies }) => (
+  <div>
+      <h3>Your Movies</h3>
+    <Movie key={movie.id} movie={movie} 
+    />
+  </div>
+);
 
-export default class MoviesList extends Component {
-  render(){
-    const { movies }  = this.props; 
-
-    const listMovies = movies.map(m => {
-      return (
-        <li><Movie key={m.id} movie={g} /></li>
-      )
-    })
-
-    return(
-      <ol>
-        {listMovies}
-      </ol>
-    )
-
-  }
-}
+export default MoviesList;
