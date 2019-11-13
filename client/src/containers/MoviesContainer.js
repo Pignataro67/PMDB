@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import AddMovie from '../components/AddMovies';
 import MoviesList from '../components/Movies/MoviesList';
+import { connect } from 'react-redux';
+import { fetchMovies } from  '../actions/moviesActions';
 
 class MoviesContainer extends Component {
 
-  constructor(){
-    super()
-    this.state = {
-    goals: []
+  componentDidMount(){
+    this.props.fetchMovies()
   }
-}
-
-componentDidMount(){
-  fetch('./api/goals')
-    .then(response => response.json())
-    .then(goals => this.setState({goals}))
-}
 
   render(){
     return(
@@ -27,4 +20,10 @@ componentDidMount(){
   }
 }
 
-export default MoviesContainer;
+const mapStateToProps = (state) => {
+	return {
+  	goals: state.goals
+  }
+}
+
+export default connect(mapStateToProps, { fetchMovies })(MoviesContainer);
